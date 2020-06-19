@@ -1,6 +1,6 @@
 ## Bem vindo
 ---
-Obrigado por participar do desafio Android da Tembici! Estamos muito contentes pelo seu primeiro passo para fazer parte de um time excepcional.
+Seja bem vindo! Estamos muito contentes pelo seu primeiro passo para fazer parte de um time excepcional. Desde já, desejo boa sorte!
 
 # Criar um aplicativo de consulta a API do [GitHub](https://github.com)#
 
@@ -25,6 +25,10 @@ Criar um aplicativo para consultar a [API do GitHub](https://developer.github.co
 
 ### **Ganha + pontos se conter** ###
 
+* Framework de injeção de dependência (Dagger ou Koin)
+* Rx Android ou Kotlin Coroutines
+* Android Jetpack (Safe Args ou Navigation)
+* Utilizar alguma arquitetura mobile (MVP ou MVVM ou MVI)
 * Framework para comunicação com API
 * Testes no projeto (unitários e por tela)
 * Testes funcionais (que naveguem pelo aplicativo como casos de uso)
