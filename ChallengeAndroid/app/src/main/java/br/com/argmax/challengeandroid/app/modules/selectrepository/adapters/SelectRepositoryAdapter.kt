@@ -8,29 +8,30 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.argmax.challengeandroid.R
 import br.com.argmax.challengeandroid.app.components.repositorycard.dto.RepositoryCardDto
-import br.com.argmax.challengeandroid.databinding.RepositoryCardViewHolderItemBinding
+import br.com.argmax.challengeandroid.databinding.RepositoryCardViewHolderBinding
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.repository_card_view_holder.*
 
-class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardViewHolderItem>() {
+class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardViewHolder>() {
 
     private var data: List<RepositoryCardDto> = listOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RepositoryCardViewHolderItem {
-        val repositoryCardViewHolderItemBinding: RepositoryCardViewHolderItemBinding =
+    ): RepositoryCardViewHolder {
+        val repositoryCardViewHolderItemBinding: RepositoryCardViewHolderBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.repository_card_view_holder_item,
+                R.layout.repository_card_component,
                 parent,
                 false
             )
 
-        return RepositoryCardViewHolderItem(repositoryCardViewHolderItemBinding.root)
+        return RepositoryCardViewHolder(repositoryCardViewHolderItemBinding.root)
     }
 
-    override fun onBindViewHolder(holder: RepositoryCardViewHolderItem, position: Int) {
+    override fun onBindViewHolder(holder: RepositoryCardViewHolder, position: Int) {
         holder.updateData(data[position])
     }
 
@@ -45,14 +46,14 @@ class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardVi
         }
     }
 
-    inner class RepositoryCardViewHolderItem(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class RepositoryCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         LayoutContainer {
 
         override val containerView: View?
             get() = itemView
 
         fun updateData(repositoryCardDto: RepositoryCardDto) {
-
+            repositoryCard.setRepositoryCardDto(repositoryCardDto)
         }
 
     }
