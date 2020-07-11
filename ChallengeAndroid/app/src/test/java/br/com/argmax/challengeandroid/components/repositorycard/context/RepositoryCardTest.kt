@@ -2,6 +2,7 @@ package br.com.argmax.challengeandroid.components.repositorycard.context
 
 import android.app.Activity
 import br.com.argmax.challengeandroid.app.components.repositorycard.RepositoryCardComponent
+import br.com.argmax.challengeandroid.app.components.repositorycard.dto.RepositoryCardDto
 import br.com.argmax.challengeandroid.components.BaseComponentTest
 
 class RepositoryCardTest : BaseComponentTest() {
@@ -17,11 +18,9 @@ class RepositoryCardTest : BaseComponentTest() {
                 "printing and typesetting industry. Lorem Ipsum has been the industry's standard " +
                 "dummy text ever since the 1500s, when an unknown printer took a galley"
 
-        private const val FORKS_QUANTITY =
-            "text ever since the 1500s, when an unknown printer took a galley"
+        private const val FORKS_QUANTITY = 640
 
-        private const val STARS_QUANTITY =
-            "of type and scrambled it to make a type specimen book. It has"
+        private const val STARS_QUANTITY = 98
 
         private const val USER_IMAGE_URL = "https://picsum.photos/200"
 
@@ -39,5 +38,36 @@ class RepositoryCardTest : BaseComponentTest() {
         mRepositoryCardComponent = RepositoryCardComponent(activity)
     }
 
+    fun `when it has short description`() {
+        val forksQuantityAsString = FORKS_QUANTITY.toString()
+        val starsQuantityAsString = STARS_QUANTITY.toString()
+
+        val repositoryCardDto = RepositoryCardDto(
+            repositoryName = REPOSITORY_NAME,
+            repositoryDescription = SHORT_REPOSITORY_DESCRIPTION,
+            forkQuantity = forksQuantityAsString,
+            starsQuantity = starsQuantityAsString,
+            userImageUrl = USER_IMAGE_URL,
+            userName = USER_NAME,
+            userFullName = USER_FULL_NAME
+        )
+        mRepositoryCardComponent?.setRepositoryCardDto(repositoryCardDto)
+    }
+
+    fun `when it has long description`() {
+        val forksQuantityAsString = FORKS_QUANTITY.toString()
+        val starsQuantityAsString = STARS_QUANTITY.toString()
+
+        val repositoryCardDto = RepositoryCardDto(
+            repositoryName = REPOSITORY_NAME,
+            repositoryDescription = LONG_REPOSITORY_DESCRIPTION,
+            forkQuantity = forksQuantityAsString,
+            starsQuantity = starsQuantityAsString,
+            userImageUrl = USER_IMAGE_URL,
+            userName = USER_NAME,
+            userFullName = USER_FULL_NAME
+        )
+        mRepositoryCardComponent?.setRepositoryCardDto(repositoryCardDto)
+    }
 
 }
