@@ -23,7 +23,7 @@ class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardVi
         val repositoryCardViewHolderItemBinding: RepositoryCardViewHolderBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.repository_card_component,
+                R.layout.repository_card_view_holder,
                 parent,
                 false
             )
