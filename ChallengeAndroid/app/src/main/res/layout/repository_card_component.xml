@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/repository_card_repository_data_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/repository_card_repository_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/blueGray600"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Nome Repositório" />
+
+            <TextView
+                android:id="@+id/repository_card_repository_description_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLength="100"
+                android:textColor="@color/blueGray900"
+                android:textSize="14sp"
+                tools:text="Descrição do respositório Lorem Ipsum is simply dummy text of the printing and" />
+
+            <LinearLayout
+                android:id="@+id/repository_card_repository_forks_and_stars_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:drawableStart="@drawable/ic_fork"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/yellow700"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="640" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_star"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/yellow700"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="100" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

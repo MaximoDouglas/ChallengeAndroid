@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#78909C</color>
 
-    <!--Blue Gray Pallet-->
+    <!--    Blue Gray Pallet    -->
     <color name="blueGray50">#ECEFF1</color>
     <color name="blueGray100">#CFD8DC</color>
     <color name="blueGray200">#B0BEC5</color>
@@ -15,5 +15,17 @@
     <color name="blueGray700">#455A64</color>
     <color name="blueGray800">#37474F</color>
     <color name="blueGray900">#263238</color>
+
+    <!--    Yellow Pallet    -->
+    <color name="yellow50">#FFFDE7</color>
+    <color name="yellow100">#FFF9C4</color>
+    <color name="yellow200">#FFF59D</color>
+    <color name="yellow300">#FFF176</color>
+    <color name="yellow400">#FFEE58</color>
+    <color name="yellow500">#FFEB3B</color>
+    <color name="yellow600">#FDD835</color>
+    <color name="yellow700">#FBC02D</color>
+    <color name="yellow800">#F9A825</color>
+    <color name="yellow900">#F57F17</color>
 
 </resources>
