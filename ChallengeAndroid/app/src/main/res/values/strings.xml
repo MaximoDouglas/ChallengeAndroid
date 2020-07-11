@@ -2,6 +2,6 @@
 
     <string name="app_name">ChallengeAndroid</string>
     <string name="select_repository_fragment_toolbar_text">Popular Repositories</string>
-    <string name="fork_icon">Fork icon</string>
+    <string name="user_image">User image</string>
 
 </resources>
