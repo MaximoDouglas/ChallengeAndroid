@@ -49,8 +49,6 @@ class SelectRepositoryFragment : Fragment() {
                 userName = "username",
                 userFullName = "Nome Sobrenome"
             )
-
-        mBinding?.fakeRepositoryCardComponent?.setRepositoryCardDto(fakeRepositoryCardDto)
     }
 
 }
