@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import br.com.argmax.challengeandroid.R
-import br.com.argmax.challengeandroid.app.components.dto.RepositoryCardDto
+import br.com.argmax.challengeandroid.app.components.repositorycard.dto.RepositoryCardDto
 import br.com.argmax.challengeandroid.databinding.SelectRepositoryFragmentBinding
 
 class SelectRepositoryFragment : Fragment() {

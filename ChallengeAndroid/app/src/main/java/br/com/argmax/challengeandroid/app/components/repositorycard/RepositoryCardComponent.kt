@@ -1,4 +1,4 @@
-package br.com.argmax.challengeandroid.app.components
+package br.com.argmax.challengeandroid.app.components.repositorycard
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import br.com.argmax.challengeandroid.R
-import br.com.argmax.challengeandroid.app.components.dto.RepositoryCardDto
+import br.com.argmax.challengeandroid.app.components.repositorycard.dto.RepositoryCardDto
 import br.com.argmax.challengeandroid.databinding.RepositoryCardComponentBinding
 
 class RepositoryCardComponent @JvmOverloads constructor(
