@@ -8,4 +8,4 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     ComponentSuiteTest::class
 )
-class UnitSuitTest
+class UnitSuiteTest

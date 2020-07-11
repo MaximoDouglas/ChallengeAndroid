@@ -21,9 +21,9 @@ open class RepositoryCardTest : BaseComponentTest() {
                 "printing and typesetting industry. Lorem Ipsum has been the industry's standard " +
                 "dummy text ever since the 1500s, when an unknown printer took a galley"
 
-        private const val FORKS_QUANTITY = 640
+        private const val FORKS_QUANTITY = 640.toString()
 
-        private const val STARS_QUANTITY = 98
+        private const val STARS_QUANTITY = 98.toString()
 
         private const val USER_IMAGE_URL = "https://picsum.photos/200"
 
@@ -42,14 +42,11 @@ open class RepositoryCardTest : BaseComponentTest() {
     }
 
     fun `when repository card has all data`() {
-        val forksQuantityAsString = FORKS_QUANTITY.toString()
-        val starsQuantityAsString = STARS_QUANTITY.toString()
-
         val repositoryCardDto = RepositoryCardDto(
             repositoryName = REPOSITORY_NAME,
             repositoryDescription = LONG_REPOSITORY_DESCRIPTION,
-            forkQuantity = forksQuantityAsString,
-            starsQuantity = starsQuantityAsString,
+            forkQuantity = FORKS_QUANTITY,
+            starsQuantity = STARS_QUANTITY,
             userImageUrl = USER_IMAGE_URL,
             userName = USER_NAME,
             userFullName = USER_FULL_NAME
@@ -79,7 +76,7 @@ open class RepositoryCardTest : BaseComponentTest() {
 
         assertEquals(
             shortString,
-            mRepositoryCardComponent?.repository_card_repository_name_text_view?.text.toString()
+            mRepositoryCardComponent?.repository_card_repository_description_text_view?.text.toString()
         )
     }
 
@@ -100,7 +97,7 @@ open class RepositoryCardTest : BaseComponentTest() {
 
     fun `assert that repository forks quantity label is set correctly`() {
         assertEquals(
-            STARS_QUANTITY,
+            FORKS_QUANTITY,
             mRepositoryCardComponent?.repository_card_repository_forks_text_view?.text.toString()
         )
     }
