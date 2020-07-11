@@ -1,4 +1,4 @@
-package br.com.argmax.challengeandroid.app.components
+package br.com.argmax.challengeandroid.app.components.dto
 
 class RepositoryCardDto(
     val repositoryName: String,
