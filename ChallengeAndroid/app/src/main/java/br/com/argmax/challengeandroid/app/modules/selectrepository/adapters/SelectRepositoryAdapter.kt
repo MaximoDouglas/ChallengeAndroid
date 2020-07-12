@@ -12,7 +12,7 @@ import br.com.argmax.challengeandroid.databinding.RepositoryCardViewHolderBindin
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.repository_card_view_holder.*
 
-class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardViewHolder>() {
+class SelectRepositoryAdapter() : Adapter<SelectRepositoryAdapter.RepositoryCardViewHolder>() {
 
     private var data: List<RepositoryCardDto> = listOf()
 
@@ -55,8 +55,6 @@ class SelectRepositoryAdapter : Adapter<SelectRepositoryAdapter.RepositoryCardVi
         fun updateData(repositoryCardDto: RepositoryCardDto) {
             repositoryCard.setRepositoryCardDto(repositoryCardDto)
         }
-
     }
-
 
 }

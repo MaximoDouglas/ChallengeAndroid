@@ -1,47 +1,29 @@
 package br.com.argmax.challengeandroid.app.modules.selectrepository
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.argmax.challengeandroid.MainActivity
 import br.com.argmax.challengeandroid.R
 import br.com.argmax.challengeandroid.app.modules.selectrepository.adapters.SelectRepositoryAdapter
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewModel
+import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewModelFactory
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewState
 import br.com.argmax.challengeandroid.databinding.SelectRepositoryFragmentBinding
-import javax.inject.Inject
+import br.com.argmax.challengeandroid.domain.entities.GitRepositoryDto
 
 class SelectRepositoryFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val mViewModel by viewModels<SelectRepositoryViewModel> { viewModelFactory }
-
+    private var mViewModel: SelectRepositoryViewModel? = null
     private var mBinding: SelectRepositoryFragmentBinding? = null
     private var mAdapter: SelectRepositoryAdapter? = SelectRepositoryAdapter()
-
-    private val navController: NavController by lazy {
-        findNavController()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        (requireActivity() as MainActivity).mainComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,9 +43,17 @@ class SelectRepositoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        context?.let {
+            mViewModel =
+                ViewModelProvider(
+                    this,
+                    SelectRepositoryViewModelFactory(it)
+                ).get(
+                    SelectRepositoryViewModel::class.java
+                )
+        }
+
         setupRecyclerView()
-        listenToStateLiveDataEvent()
-        mViewModel.getData()
     }
 
     private fun setupRecyclerView() {
@@ -76,22 +66,6 @@ class SelectRepositoryFragment : Fragment() {
         )
 
         mBinding?.selectRepositoryFragmentRecyclerView?.adapter = mAdapter
-    }
-
-    private fun listenToStateLiveDataEvent() {
-        mViewModel.stateLiveData.observe(viewLifecycleOwner, Observer { registrationState ->
-            when (registrationState) {
-                is SelectRepositoryViewState.Loading -> {
-
-                }
-                is SelectRepositoryViewState.Success -> {
-                    val data = registrationState.data
-                }
-                is SelectRepositoryViewState.Error -> {
-
-                }
-            }
-        })
     }
 
 }

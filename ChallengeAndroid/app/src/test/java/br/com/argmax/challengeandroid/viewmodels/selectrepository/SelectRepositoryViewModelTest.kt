@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewModel
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewState
-import br.com.argmax.challengeandroid.service.repository.RepositoryRepository
 import br.com.argmax.challengeandroid.viewmodels.utils.TestContextProvider
 import br.com.argmax.challengeandroid.viewmodels.utils.TestCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
