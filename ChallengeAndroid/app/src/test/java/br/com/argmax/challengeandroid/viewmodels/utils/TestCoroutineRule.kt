@@ -1,4 +1,4 @@
-package br.com.argmax.challengeandroid.viewmodels
+package br.com.argmax.challengeandroid.viewmodels.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

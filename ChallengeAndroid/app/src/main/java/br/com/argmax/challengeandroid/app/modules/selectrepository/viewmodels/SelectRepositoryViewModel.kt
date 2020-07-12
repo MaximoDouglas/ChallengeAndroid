@@ -4,14 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.argmax.challengeandroid.domain.usecases.GetRepositoryUseCase
+import br.com.argmax.challengeandroid.service.repository.RepositoryRepository
 import br.com.argmax.challengeandroid.utils.viewmodels.CoroutineContextProvider
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SelectRepositoryViewModel(
-    private val getRepositoryUseCase: GetRepositoryUseCase,
+class SelectRepositoryViewModel @Inject constructor(
+    private val repositoryRepository: RepositoryRepository,
     private val contextProvider: CoroutineContextProvider
 ) : ViewModel() {
 
@@ -27,7 +28,7 @@ class SelectRepositoryViewModel(
         stateLiveData.value = SelectRepositoryViewState.Loading
         viewModelScope.launch(handler) {
             val data = withContext(contextProvider.IO) {
-                getRepositoryUseCase.fetchFromServer()
+                repositoryRepository.fetchFromServer()
             }
 
             stateLiveData.value = SelectRepositoryViewState.Success(data)

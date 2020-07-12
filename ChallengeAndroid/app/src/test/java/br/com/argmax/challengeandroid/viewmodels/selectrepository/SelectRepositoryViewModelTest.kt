@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewModel
 import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewState
-import br.com.argmax.challengeandroid.domain.usecases.GetRepositoryUseCase
-import br.com.argmax.challengeandroid.viewmodels.TestContextProvider
-import br.com.argmax.challengeandroid.viewmodels.TestCoroutineRule
+import br.com.argmax.challengeandroid.service.repository.RepositoryRepository
+import br.com.argmax.challengeandroid.viewmodels.utils.TestContextProvider
+import br.com.argmax.challengeandroid.viewmodels.utils.TestCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
@@ -23,10 +23,11 @@ class SelectRepositoryViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val testCoroutineRule = TestCoroutineRule()
+    val testCoroutineRule =
+        TestCoroutineRule()
 
     @Mock
-    private lateinit var getRepositoryUseCase: GetRepositoryUseCase
+    private lateinit var repositoryRepository: RepositoryRepository
 
     @Mock
     private lateinit var viewStateObserver: Observer<SelectRepositoryViewState>
@@ -38,7 +39,7 @@ class SelectRepositoryViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         selectRepositoryViewModel = SelectRepositoryViewModel(
-            getRepositoryUseCase = getRepositoryUseCase,
+            repositoryRepository = repositoryRepository,
             contextProvider = TestContextProvider()
         ).apply {
             getStateLiveData().observeForever(viewStateObserver)
@@ -50,7 +51,7 @@ class SelectRepositoryViewModelTest {
         testCoroutineRule.runBlockingTest {
             //Given
             val data = Any()
-            `when`(getRepositoryUseCase.fetchFromServer()).thenReturn(data)
+            `when`(repositoryRepository.fetchFromServer()).thenReturn(data)
 
             //When
             selectRepositoryViewModel.getData()
