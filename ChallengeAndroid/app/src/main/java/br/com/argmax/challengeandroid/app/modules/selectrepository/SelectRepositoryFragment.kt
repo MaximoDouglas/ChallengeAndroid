@@ -1,24 +1,47 @@
 package br.com.argmax.challengeandroid.app.modules.selectrepository
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.argmax.challengeandroid.MainActivity
 import br.com.argmax.challengeandroid.R
-import br.com.argmax.challengeandroid.app.components.repositorycard.dto.RepositoryCardDto
 import br.com.argmax.challengeandroid.app.modules.selectrepository.adapters.SelectRepositoryAdapter
+import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewModel
+import br.com.argmax.challengeandroid.app.modules.selectrepository.viewmodels.SelectRepositoryViewState
 import br.com.argmax.challengeandroid.databinding.SelectRepositoryFragmentBinding
-
+import javax.inject.Inject
 
 class SelectRepositoryFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val mViewModel by viewModels<SelectRepositoryViewModel> { viewModelFactory }
+
     private var mBinding: SelectRepositoryFragmentBinding? = null
     private var mAdapter: SelectRepositoryAdapter? = SelectRepositoryAdapter()
+
+    private val navController: NavController by lazy {
+        findNavController()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (requireActivity() as MainActivity).mainComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +62,8 @@ class SelectRepositoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        setFakeData()
+        listenToStateLiveDataEvent()
+        mViewModel.getData()
     }
 
     private fun setupRecyclerView() {
@@ -54,28 +78,20 @@ class SelectRepositoryFragment : Fragment() {
         mBinding?.selectRepositoryFragmentRecyclerView?.adapter = mAdapter
     }
 
-    private fun setFakeData() {
-        val fakeRepositoryCardDto =
-            RepositoryCardDto(
-                repositoryName = "Nome repositório",
-                repositoryDescription = "Lorem Ipsum is simply dummy text of the printing and " +
-                        "typesetting industry. Lorem Ipsum has been the industry's standard dummy " +
-                        "text ever since the 1500s, when an unknown printer took a galley of type " +
-                        "and scrambled it to make a type specimen book. It has",
-                forkQuantity = 640.toString(),
-                starsQuantity = 98.toString(),
-                userImageUrl = "https://picsum.photos/200",
-                userName = "username",
-                userFullName = "Nome Sobrenome"
-            )
+    private fun listenToStateLiveDataEvent() {
+        mViewModel.stateLiveData.observe(viewLifecycleOwner, Observer { registrationState ->
+            when (registrationState) {
+                is SelectRepositoryViewState.Loading -> {
 
-        val repositoryCardDtoList = mutableListOf(fakeRepositoryCardDto)
-        repositoryCardDtoList.add(fakeRepositoryCardDto)
-        repositoryCardDtoList.add(fakeRepositoryCardDto)
-        repositoryCardDtoList.add(fakeRepositoryCardDto)
-        repositoryCardDtoList.add(fakeRepositoryCardDto)
+                }
+                is SelectRepositoryViewState.Success -> {
+                    val data = registrationState.data
+                }
+                is SelectRepositoryViewState.Error -> {
 
-        mAdapter?.replaceData(repositoryCardDtoList)
+                }
+            }
+        })
     }
 
 }

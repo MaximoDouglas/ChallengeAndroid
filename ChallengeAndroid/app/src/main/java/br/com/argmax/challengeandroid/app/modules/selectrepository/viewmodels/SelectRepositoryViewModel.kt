@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.argmax.challengeandroid.domain.entities.RepositoryDto
 import br.com.argmax.challengeandroid.service.repository.RepositoryRepository
 import br.com.argmax.challengeandroid.utils.viewmodels.CoroutineContextProvider
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -17,21 +18,21 @@ class SelectRepositoryViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val handler = CoroutineExceptionHandler { _, throwable ->
-        stateLiveData.value = SelectRepositoryViewState.Error(throwable)
+        _stateLiveData.value = SelectRepositoryViewState.Error(throwable)
     }
 
-    private val stateLiveData = MutableLiveData<SelectRepositoryViewState>()
+    private val _stateLiveData = MutableLiveData<SelectRepositoryViewState>()
 
-    fun getStateLiveData(): LiveData<SelectRepositoryViewState> = stateLiveData
+    val stateLiveData: LiveData<SelectRepositoryViewState> get() = _stateLiveData
 
     fun getData() {
-        stateLiveData.value = SelectRepositoryViewState.Loading
+        _stateLiveData.value = SelectRepositoryViewState.Loading
         viewModelScope.launch(handler) {
             val data = withContext(contextProvider.IO) {
                 repositoryRepository.fetchFromServer()
             }
 
-            stateLiveData.value = SelectRepositoryViewState.Success(data)
+            _stateLiveData.value = SelectRepositoryViewState.Success(data)
         }
     }
 
@@ -41,6 +42,6 @@ sealed class SelectRepositoryViewState {
 
     object Loading : SelectRepositoryViewState()
     data class Error(val throwable: Throwable) : SelectRepositoryViewState()
-    data class Success(val data: Any) : SelectRepositoryViewState()
+    data class Success(val data: List<RepositoryDto>) : SelectRepositoryViewState()
 
 }

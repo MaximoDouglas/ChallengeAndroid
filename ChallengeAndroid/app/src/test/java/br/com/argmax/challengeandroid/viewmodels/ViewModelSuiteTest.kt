@@ -10,5 +10,4 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     SelectRepositoryViewModelTest::class
 )
-class ViewModelSuiteTest {
-}
+class ViewModelSuiteTest
