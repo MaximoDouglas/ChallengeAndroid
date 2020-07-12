@@ -2,7 +2,7 @@ package br.com.argmax.challengeandroid.domain.usecases
 
 class GetRepositoryUseCase {
 
-    fun fetchFromServer(): Any {
+    suspend fun fetchFromServer(): Any {
         TODO("Not yet implemented")
     }
 
