@@ -45,6 +45,14 @@ android {
         experimental = true
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        prod {
+            buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+        }
+    }
+
 }
 
 dependencies {
@@ -81,5 +89,12 @@ dependencies {
     def dagger_version = '2.27'
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // API CONSUME
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
 
 }

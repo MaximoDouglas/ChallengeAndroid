@@ -9,7 +9,7 @@ class RepositoryCardDto(
     val starsQuantity: String,
     val userImageUrl: String,
     val userName: String,
-    val userFullName: String
+    val userFullName: String? = "Default name"
 ) {
     fun getRepositoryDescription(): String {
         return compactStringWithDots(repositoryDescription, 60)
