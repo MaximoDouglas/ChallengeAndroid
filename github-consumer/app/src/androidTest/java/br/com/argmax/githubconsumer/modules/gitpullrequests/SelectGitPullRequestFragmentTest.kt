@@ -67,7 +67,7 @@ class SelectGitPullRequestFragmentTest {
                     R.id.gitRepositoryCard
                 )
         ).perform(ViewActions.click())
-        waitViewToComplete()
+        waitViewToComplete(3500)
     }
 
     @After
